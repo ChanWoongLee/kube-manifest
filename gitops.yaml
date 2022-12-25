@@ -2,44 +2,44 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: gitops
-
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gitops
-  namespace: gitops
+    name: gitops
+    namespace: gitops
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: gitops
-  template:
-    metadata:
-      labels:
-        app: gitops
-    spec:
-      containers:
-        image: >-
-          test
-        command:
-          - /bin/sh
-        args:
-          - '-c'
-          - npm start
-        ports:
-          - containerPort: 3003
+    replicas: 1
+    selector:
+        matchLabels:
+            app: gitops
+    template:
+        metadata:
+            labels:
+                app: gitops
+        spec:
+            containers:
+            - name: gitops
+              image: >-
+                  dlcksdnd6785/gitops:3a856fe7
+              command:
+              - /bin/sh
+              args:
+              - '-c'
+              - npm start
+              ports:
+              - containerPort: 3003
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: gitops
-  namespace: gitops
+    name: gitops
+    namespace: gitops
 spec:
-  type: NodePort
-  ports:
+    type: NodePort
+    ports:
     - port: 81
       targetPort: 3003
       nodePort: 30000
-  selector:
-    app: gitops
+    selector:
+        app: gitops
