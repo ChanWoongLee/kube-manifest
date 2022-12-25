@@ -2,11 +2,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: gitops
-spec:
-  template:
-    spec:
-      containers:
-        image: null
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -47,7 +43,3 @@ spec:
       nodePort: 30000
   selector:
     app: gitops
-  template:
-    spec:
-      containers:
-        image: null
