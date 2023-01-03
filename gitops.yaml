@@ -43,3 +43,21 @@ spec:
       nodePort: 30000
     selector:
         app: gitops
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: maptics-campaign-biz-stg-ingress
+    namespace: maptics-stage
+    annotations:
+        ingress.kubernetes.io/rewrite-target: /
+        kubernetes.io/ingress.class: nginx
+spec:
+    rulse:
+    - host: gitops.example.com
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: gitops
+            servicePort: 81 
