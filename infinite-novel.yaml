@@ -22,27 +22,9 @@ spec:
         - name: infinite-novel
           image: >-
             dlcksdnd6785/infinite-novel:043d3fa8
-          env:
-            - name: GOOGLE_CLIENT_ID
-              valueFrom:
-                configMapKeyRef:
-                  name: infinite-novel
-                  key: GOOGLE_CLIENT_ID
-            - name: GOOGLE_SECRET
-              valueFrom:
-                configMapKeyRef:
-                  name: infinite-novel
-                  key: GOOGLE_SECRET
-            - name: CALLBACK_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: infinite-novel
-                  key: CALLBACK_URL
-            - name: DB_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: infinite-novel
-                  key: DB_URL
+          envFrom:
+            - configMapRef:
+                name: infinite-novel
           command:
             - /bin/sh
           args:
