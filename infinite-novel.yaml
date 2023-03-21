@@ -21,7 +21,7 @@ spec:
       containers:
         - name: infinite-novel
           image: >-
-            dlcksdnd6785/infinite-novel:9bb22e8a
+            dlcksdnd6785/infinite-novel:55987a4a
           command:
             - /bin/sh
           args:
